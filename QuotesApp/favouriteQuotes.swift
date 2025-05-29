@@ -9,7 +9,12 @@ import SwiftUI
 
 struct favouriteQuotes: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Image("landing_image")
+                .resizable()
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }
+        .edgesIgnoringSafeArea([.top, .leading, .trailing])
     }
 }
 
