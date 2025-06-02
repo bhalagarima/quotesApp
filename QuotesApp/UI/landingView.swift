@@ -18,15 +18,11 @@ struct landingView: View {
                 VStack(alignment:.center) {
                     Spacer()
                     Text("Welcome to Quotes App! - Your daily dose of inspiration.")
-                        .font(.largeTitle)
-                        .fontDesign(.serif)
-                        .foregroundStyle(.white)
-                        .padding(20)
+                        .landingTitle()
+                        .padding(.all, SpacingTheme.twentyfour)
                     Text("Explore uplifting quotes to brighten your day and keep you going.")
-                        .font(.headline)
-                        .fontDesign(.serif)
-                        .foregroundStyle(.white)
-                        .padding(20)
+                        .landingSubTitle()
+                        .padding(.all, SpacingTheme.twentyfour)
                     Spacer()
                     Button(action: {
                         //perform action
@@ -38,7 +34,7 @@ struct landingView: View {
                             Image(systemName: "arrowshape.forward.fill")
                                 .symbolEffect(.wiggle, value: isWiggle)
                         }
-                        .padding(10)
+                        .padding(SpacingTheme.ten)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .background(
@@ -49,7 +45,7 @@ struct landingView: View {
                             .fill(.brown)
                         )
                     })
-                    .padding(20)
+                    .padding(SpacingTheme.sixteen)
                     .font(.title3)
                     .fontDesign(.serif)
                     .navigationDestination(isPresented: $isMainView, destination: {
