@@ -8,43 +8,50 @@
 import SwiftUI
 
 struct listingView: View {
+    @StateObject var listingVM = ListingViewModel()
     var body: some View {
         ZStack{
             Image("landing_image")
                 .resizable()
             VStack{
-                List(0..<10) { item in
-                    VStack(spacing: 10.0){
-                        Text("Stay motivated, even when the path is tough—positivity turns every setback into a setup for a greater comeback.")
-                            .quoteStyle()
-                        Text("~ Unknown")
-                            .authorStyle()
-                        
-                        HStack(alignment: .bottom) {
-                            Button {
-                                //action
-                            } label: {
-                                Image(systemName: "heart")
-                                    .foregroundStyle(.white)
-                            }
+                List{
+                    ForEach(listingVM.quotes) { item in
+                        VStack(alignment:.center,spacing: 10.0){
+                            Text(item.quote)
+                                .quoteStyle()
+                            Text(item.author)
+                                .authorStyle()
                             
-                            Button {
-                                //action
-                            } label: {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundStyle(.white)
+                            HStack() {
+                                Button {
+                                    //action
+                                } label: {
+                                    Image(systemName: "heart")
+                                        .foregroundStyle(.white)
+                                        .padding(SpacingTheme.six)
+                                }
+                                
+                                ShareLink(item:item.quote) {
+                                    Label("", systemImage: "square.and.arrow.up")
+                                        .foregroundStyle(.white)
+                                }
                             }
                         }
+                        .padding(SpacingTheme.eight)
+                        .frame(maxWidth: .infinity)
+                        .quoteBackgroundStyleRow()
                     }
-                    .padding(SpacingTheme.eight)
-                    .quoteBackgroundStyleRow()
                 }
                 .listRowSpacing(SpacingTheme.eight)
                 .scrollContentBackground(.hidden)
-                
             }
         }
         .edgesIgnoringSafeArea([.top, .leading, .trailing])
+        .onAppear(perform: {
+            Task {
+                await listingVM.fetchData()
+            }
+        })
     }
 }
 

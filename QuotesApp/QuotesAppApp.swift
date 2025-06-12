@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct QuotesAppApp: App {
+    let persistanceController = PersistanceController()
     var body: some Scene {
         WindowGroup {
             landingView()
+                .environment(\.managedObjectContext, persistanceController.container.viewContext)
         }
     }
 }

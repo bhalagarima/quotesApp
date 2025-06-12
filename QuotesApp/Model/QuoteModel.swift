@@ -13,3 +13,4 @@ struct QuoteModel: Identifiable, Codable {
     var quote: String
     var author: String
 }
+

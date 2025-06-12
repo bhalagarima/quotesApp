@@ -5,10 +5,15 @@
 //  Created by Garima Bhala on 2025-05-27.
 //
 
+
 import SwiftUI
+import CoreData
 
 struct dailyQuote: View {
     @StateObject var viewModel = DailyQuoteVM()
+    @State var isFavorite: Bool = false
+    @FetchRequest(entity: Quote.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Quote.author, ascending: true)]) var favQuotes: FetchedResults<Quote>
+    
     var body: some View {
         ZStack{
             Image("landing_image")
@@ -23,8 +28,12 @@ struct dailyQuote: View {
                 HStack(alignment: .bottom) {
                     Button {
                         //action
+                        viewModel.saveFavourite(quote: viewModel.quoteData ?? QuoteModel(id: 0, quote: "", author: ""))
+                        viewModel.favouriteQuotes.append(contentsOf: favQuotes)
+                        isFavorite.toggle()
+                        
                     } label: {
-                        Image(systemName: "heart")
+                        Image(systemName: isFavorite ? "heart.fill" : "heart")
                             .foregroundStyle(.white)
                             .padding(SpacingTheme.ten)
                     }
@@ -43,6 +52,15 @@ struct dailyQuote: View {
         .onAppear(perform: {
             Task {
                 await viewModel.fetchData()
+                isFavorite = false
+                if favQuotes.count > 0 {
+                    favQuotes.forEach({ item in
+                        if item.id == viewModel.quoteData?.id ?? 0 {
+                            // already in fav list
+                            isFavorite = true
+                        }
+                    })
+                }
             }
         })
     }

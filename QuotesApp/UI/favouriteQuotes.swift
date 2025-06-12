@@ -6,22 +6,44 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct favouriteQuotes: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Quote.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Quote.author, ascending: true)]) var favouriteQuotes: FetchedResults<Quote>
+    
     var body: some View {
         ZStack{
             Image("landing_image")
                 .resizable()
             VStack{
-                List(0..<10) { item in
-                    VStack(spacing: 10.0){
-                        Text("Stay motivated, even when the path is tough—positivity turns every setback into a setup for a greater comeback.")
-                            .quoteStyle()
-                        Text("~ Unknown")
-                            .authorStyle()
+                List{
+                    ForEach(favouriteQuotes) { item in
+                        VStack(alignment:.center,spacing: 10.0){
+                            Text(item.quote ?? "")
+                                .quoteStyle()
+                            Text(item.author ?? "")
+                                .authorStyle()
+                            
+                            HStack() {
+                                Button {
+                                    //action
+                                } label: {
+                                    Image(systemName:"heart.fill")
+                                        .foregroundStyle(.white)
+                                        .padding(SpacingTheme.six)
+                                }
+                                
+                                ShareLink(item:item.quote ?? "") {
+                                    Label("", systemImage: "square.and.arrow.up")
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                        }
+                        .padding(SpacingTheme.eight)
+                        .frame(maxWidth: .infinity)
+                        .quoteBackgroundStyleRow()
                     }
-                    .padding(SpacingTheme.eight)
-                    .quoteBackgroundStyleRow()
                 }
                 .listRowSpacing(SpacingTheme.eight)
                 .scrollContentBackground(.hidden)

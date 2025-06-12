@@ -6,8 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9FE432FE2DF1F0680048179D /* QuotesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE432FC2DF1F0680048179D /* QuotesModel.xcdatamodeld */; };
+		9FE433002DF1F0D60048179D /* PersistanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE432FF2DF1F0D60048179D /* PersistanceController.swift */; };
+		9FE433022DF1F7970048179D /* DataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE433012DF1F7970048179D /* DataLoading.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		9F30F9F52DE60283003BFCC7 /* QuotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FE432FD2DF1F0680048179D /* QuotesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuotesModel.xcdatamodel; sourceTree = "<group>"; };
+		9FE432FF2DF1F0D60048179D /* PersistanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceController.swift; sourceTree = "<group>"; };
+		9FE433012DF1F7970048179D /* DataLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +41,9 @@
 		9F30F9EC2DE60283003BFCC7 = {
 			isa = PBXGroup;
 			children = (
+				9FE432FF2DF1F0D60048179D /* PersistanceController.swift */,
+				9FE433012DF1F7970048179D /* DataLoading.swift */,
+				9FE432FC2DF1F0680048179D /* QuotesModel.xcdatamodeld */,
 				9F30F9F72DE60283003BFCC7 /* QuotesApp */,
 				9F30F9F62DE60283003BFCC7 /* Products */,
 			);
@@ -119,6 +131,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE432FE2DF1F0680048179D /* QuotesModel.xcdatamodeld in Sources */,
+				9FE433022DF1F7970048179D /* DataLoading.swift in Sources */,
+				9FE433002DF1F0D60048179D /* PersistanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +339,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9FE432FC2DF1F0680048179D /* QuotesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9FE432FD2DF1F0680048179D /* QuotesModel.xcdatamodel */,
+			);
+			currentVersion = 9FE432FD2DF1F0680048179D /* QuotesModel.xcdatamodel */;
+			path = QuotesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9F30F9ED2DE60283003BFCC7 /* Project object */;
 }
